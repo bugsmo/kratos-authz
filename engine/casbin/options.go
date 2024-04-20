@@ -32,4 +32,20 @@ func WithModel(model *model.Model) OptFunc {
 	}
 }
 
+func WithStringModel(str string) OptFunc {
+	return func(s *State) {
+		s.model, _ = model.NewModelFromString(str)
+	}
+}
 
+func WithFileModel(path string) OptFunc {
+	return func(s *State) {
+		s.model, _ = model.NewModelFromFile(path)
+	}
+}
+
+func WithPolicyAdapter(policy *Adapter) OptFunc {
+	return func(s *State) {
+		s.policy = policy
+	}
+}
